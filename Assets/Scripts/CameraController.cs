@@ -2,19 +2,22 @@
 
 public class CameraController : MonoBehaviour
 {
+    public Transform player;
     Vector3 offset;
-    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        if (player == null)
+        {
+            Debug.LogError("Faltou colocar a referência");
+        }
+        offset = transform.position - player.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.position = player.transform.position + offset;
-        transform.LookAt(player.transform);
+        transform.position = player.position + offset;
     }
 }
